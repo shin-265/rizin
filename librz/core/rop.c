@@ -960,6 +960,7 @@ static void print_rop_gadget_info(const RzCore *core, const RzRopGadgetInfo *gad
 		rz_rop_gadget_print_json_mode(core, gadget_info, context->state->d.pj);
 		break;
 	case RZ_OUTPUT_MODE_STANDARD:
+	case RZ_OUTPUT_MODE_LONG:
 		rz_rop_gadget_print_standard_mode(core, gadget_info);
 		break;
 	default:
@@ -1008,6 +1009,7 @@ static bool print_rop(const RzCore *core, RzList /*<RzCoreAsmHit *>*/ *hitlist, 
 			result = rz_rop_print_quiet_mode(core, hit, &size, context);
 			break;
 		case RZ_OUTPUT_MODE_STANDARD:
+		case RZ_OUTPUT_MODE_LONG:
 			result = rz_rop_print_standard_mode(core, hit, &size, context);
 			break;
 		case RZ_OUTPUT_MODE_TABLE:
@@ -1044,6 +1046,7 @@ static bool print_rop(const RzCore *core, RzList /*<RzCoreAsmHit *>*/ *hitlist, 
 		rz_cons_newline();
 		break;
 	case RZ_OUTPUT_MODE_STANDARD:
+	case RZ_OUTPUT_MODE_LONG:
 		if (hit) {
 			rz_cons_printf("Gadget size: %d\n", (int)size);
 		}
