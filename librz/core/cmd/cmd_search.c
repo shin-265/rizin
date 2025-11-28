@@ -88,6 +88,10 @@ RZ_IPI RzCmdStatus rz_cmd_search_gadget_handler(RzCore *core, int argc, const ch
 
 RZ_IPI RzCmdStatus rz_cmd_detail_gadget_handler(RzCore *core, int argc, const char **argv, RzCmdStateOutput *state) {
 	const char *input = argc > 1 ? argv[1] : "";
+	RzRopRequestMask mask = RZ_ROP_GADGET_ANALYZE | RZ_ROP_GADGET_PRINT_DETAIL;
+	if (state && state->mode == RZ_OUTPUT_MODE_LONG) {
+		mask |= RZ_ROP_GADGET_PRINT;
+	}
 	RzRopSearchContext *context = rz_core_rop_search_context_new(core, input, false, RZ_ROP_GADGET_PRINT_DETAIL | RZ_ROP_GADGET_ANALYZE, RZ_ROP_DETAIL_SEARCH_NON, state);
 	RzCmdStatus status = rz_core_rop_search(core, context);
 	rz_core_rop_search_context_free(context);
